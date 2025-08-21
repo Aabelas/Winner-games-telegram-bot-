@@ -18,7 +18,7 @@ from telegram.ext import (
 # Load Config / Token
 # =========================
 load_dotenv()
-BOT_TOKEN = os.getenv("BOT_TOKEN")  # Make sure you set BOT_TOKEN in Render Environment
+BOT_TOKEN = os.getenv("8368265957:AAFGd6E2YoUjP01W7Edu-c5uESX_RbwATpY")  # Make sure you set BOT_TOKEN in Render Environment
 if not BOT_TOKEN:
     raise ValueError("Bot token not found. Please set BOT_TOKEN in environment variables.")
 
