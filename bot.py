@@ -3,6 +3,7 @@ import sqlite3
 from datetime import date
 from typing import Optional
 
+from dotenv import load_dotenv
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo, Update
 from telegram.ext import (
     ApplicationBuilder,
@@ -14,11 +15,12 @@ from telegram.ext import (
 )
 
 # =========================
-# Config / Token
+# Load Config / Token
 # =========================
-BOT_TOKEN = os.getenv("8368265957:AAFGd6E2YoUjP01W7Edu-c5uESX_RbwATpY") or os.getenv("BOT_TOKEN")
+load_dotenv()
+BOT_TOKEN = os.getenv("BOT_TOKEN")  # Make sure you set BOT_TOKEN in Render Environment
 if not BOT_TOKEN:
-    raise ValueError("Bot token not found. Set TELEGRAM_BOT_TOKEN (or BOT_TOKEN).")
+    raise ValueError("Bot token not found. Please set BOT_TOKEN in environment variables.")
 
 DB_PATH = "users.db"
 
@@ -234,7 +236,7 @@ async def on_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
         return
 
-if data == "deposit_bank":
+    if data == "deposit_bank":
         await edit_or_reply(
             update,
             "🏦 Bank Transfer\nBank: XYZ Bank\nAccount: 123456789\nName: Winner Games\nSend and then tap 'I've Paid'.",
@@ -325,5 +327,5 @@ def main():
     print("🤖 Bot is running...")
     app.run_polling()
 
-if name == "main":
+if __name__ == "__main__":
     main()
